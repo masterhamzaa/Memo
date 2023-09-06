@@ -16,7 +16,9 @@ express().use(middleware);
 const PostitModel = require("../Models/Postit");
 const UserModel = require("../Models/User");
 
-
+router.get("/",(req,res)=>{
+  res.send("HAMZA")
+})
 
 // routes
 router.post("/register", async (req, res) => {
@@ -54,7 +56,6 @@ router.post("/login", async (req, res) => {
   }
   if (error) res.json({ err: "error" })
 });
-
 
 router.get("/postits/:userid", middleware, async (req, res) => {
   try {
