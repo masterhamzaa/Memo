@@ -6,6 +6,7 @@ const server = express();
 server.use(express.json());
 //server.use(cors({ origin: "http://localhost:3000", methods: ["POST", "GET"], credentials: true }));
 
+
 // mongo database
 const { mdb } = require("./database/db");
 mdb();
