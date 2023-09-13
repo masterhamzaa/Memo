@@ -20,9 +20,6 @@
     "express-jwt": "^8.4.1",
     "mongoose": "^7.0.1",
     "nodemon": "^2.0.21",
-    "uuid": "^9.0.0",
-    "netlify-cli": "^12.7.2",
-    "netlify-lambda": "^2.0.15",
-    "serverless-http": "^2.7.0"
+    "uuid": "^9.0.0"
   }
 }
