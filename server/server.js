@@ -4,7 +4,12 @@ const cors = require("cors");
 
 const server = express();
 server.use(express.json());
-server.use(cors({origin: "https://memo-app-tau.vercel.app/",credentials:true}));
+server.use(cors({
+  origin: ["https://memo-app-tau.vercel.app/"],
+  methods: ["POST", "GET"],
+  credentials: true
+}
+));
 
 // mongo database
 const { mdb } = require("./database/db");
@@ -12,7 +17,8 @@ mdb();
 
 // routes
 const routes = require("./Routes/Router");
-server.use("/",routes);
+const { credentials } = require("amqplib");
+server.use("/", routes);
 
 // server listen
 server.listen(process.env.port, () => {
