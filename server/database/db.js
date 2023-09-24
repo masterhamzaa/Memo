@@ -1,6 +1,7 @@
 const mdb = async () => {
     require("dotenv").config()
     const mongoose = require("mongoose")
+    mongoose.set("strictQuery", false)
     try {
         await mongoose.connect(process.env.MONGODB_CONNECT_URI)
         console.log("Connect to MongoDB successfully...")
