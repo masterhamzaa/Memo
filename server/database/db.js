@@ -1,14 +1,18 @@
-const mdb = async () => {
+function mdb() {
     require("dotenv").config()
     const mongoose = require("mongoose")
     mongoose.set("strictQuery", false)
-    try {
-        await mongoose.connect(process.env.MONGODB_CONNECT_URI)
-        console.log("Connect to MongoDB successfully...")
-    } catch (error) {
-        console.log("Connect failed " + error.message )
-    }
+    mongoose.connect(process.env.mdb, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    const cluster = mongoose.connection;
+    cluster.once("open", () => {
+        console.log("Express Cluster ready for operations....");
+    })
+    cluster.on("error", (err) => {
+        console.log("error : " + err);
+    })
 }
-
 
 module.exports = { mdb }
