@@ -5,7 +5,7 @@ const server = express();
 server.use(express.json());
 server.use(cors({
   origin: ["https://memo-app-tau.vercel.app"],
-  methods: ["POST", "GET"],
+  methods: ["POST", "GET","DELETE"],
   credentials: true
 }
 ));
