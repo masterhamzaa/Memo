@@ -14,7 +14,7 @@ export default function Signup() {
   function onSubmit(e) {
     e.preventDefault();
     const transfert = async () => {
-      const req = await axios.post("http://localhost:1337/register", data);
+      const req = await axios.post("https://master-api-62tp.onrender.com/register", data);
       return req.data;
     };
 
