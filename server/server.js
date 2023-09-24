@@ -4,7 +4,7 @@ const cors = require("cors");
 
 const server = express();
 server.use(express.json());
-server.use(cors({origin: "https://memo-app-tau.vercel.app/"}));
+server.use(cors({origin: "https://memo-app-tau.vercel.app/",credentials:true}));
 
 // mongo database
 const { mdb } = require("./database/db");
