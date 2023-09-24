@@ -1,11 +1,10 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-
 const server = express();
 server.use(express.json());
 server.use(cors({
-  origin: ["https://memo-app-tau.vercel.app/"],
+  origin: ["https://memo-app-tau.vercel.app"],
   methods: ["POST", "GET"],
   credentials: true
 }
@@ -17,7 +16,7 @@ mdb();
 
 // routes
 const routes = require("./Routes/Router");
-const { credentials } = require("amqplib");
+//const { credentials } = require("amqplib");
 server.use("/", routes);
 
 // server listen
