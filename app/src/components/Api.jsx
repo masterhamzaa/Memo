@@ -3,12 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 // Axios
 import axios from "axios";
-// Sweet Alert
 import Swal from "sweetalert2";
-// CSS
 import "./Api.css";
-// Components
 import Header from "./Header/Header";
+
+
 
 export default function Api() {
   const [load, setLoad] = useState(false)

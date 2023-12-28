@@ -1,8 +1,8 @@
-function mdb() {
+const mdb = async () => {
     require("dotenv").config()
     const mongoose = require("mongoose")
     mongoose.set("strictQuery", false)
-    mongoose.connect(process.env.mdb, {
+    await mongoose.connect(process.env.mdb, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
