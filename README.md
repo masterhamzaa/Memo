@@ -1,2 +1,1 @@
-#### Memo App
-#### WebSite : https://memo-app-tau.vercel.app/ 
+#### App : https://memo-app-tau.vercel.app/ 
