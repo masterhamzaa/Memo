@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
+
 import Swal from 'sweetalert2';
 
 
@@ -54,7 +55,10 @@ export default function Login() {
   }
   return (
     <>
-      <div className="container">
+     {!load && <div style={{ marginTop: "30px" }} id="loader"></div>}
+     {load && (
+            <>
+               <div className="container">
         <div className="w3-container w3-pale-green w3-round h">
           <h4
             className="w3-left"
@@ -117,6 +121,9 @@ export default function Login() {
           </div>
         </div>
       </div>
+            </>
+          )}
+     
     </>
   );
 }
