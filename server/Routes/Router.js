@@ -17,7 +17,7 @@ const PostitModel = require("../Models/Postit");
 const UserModel = require("../Models/User");
 
 router.get("/",(req,res)=>{
-  res.send("HAMZA")
+  res.json({ message: "ok"});
 })
 
 // routes

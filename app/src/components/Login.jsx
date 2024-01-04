@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 
 
 export default function Login() {
+  const [load, setLoad] = useState(false)
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -13,6 +14,20 @@ export default function Login() {
 
   //Navigation
   const go = useNavigate();
+
+  useEffect(() => {
+    setLoad(false)
+    const Boot = async () => {
+      const req = await axios.get("https://master-api-62tp.onrender.com/");
+      return req.data;
+    };
+    Boot().then((data) => {
+      if (data.message) {setLoad(true)}  else setLoad(false)
+    });
+    setLoad(true)
+    // eslint-disable-next-line
+  }, [load])
+
 
   //Login Process
   function onLogin(e) {
