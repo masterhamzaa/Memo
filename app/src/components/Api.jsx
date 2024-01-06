@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from "react";
-// Router
 import { useNavigate } from "react-router-dom";
-// Axios
 import axios from "axios";
 import Swal from "sweetalert2";
 import "./Api.css";
 import Header from "./Header/Header";
 
-
-
 export default function Api() {
   const [load, setLoad] = useState(false)
   const [data, setData] = useState([])
   const [user, setUser] = useState("")
-  const api = axios.create({ baseURL: 'https://master-api-62tp.onrender.com/',})
+  const api = axios.create({ baseURL: 'https://master-api-62tp.onrender.com/', })
   const go = useNavigate()
   const notify = (msg, titre, type) => {
     return Swal.fire({

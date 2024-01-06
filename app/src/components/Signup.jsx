@@ -30,8 +30,6 @@ export default function Signup() {
           text: "User already exist try another email !",
         });
       }
-
-      
     });
   }
 
@@ -62,7 +60,7 @@ export default function Signup() {
         style={{ width: "60%", padding: "10px", margin: "0 auto" }}
       >
         <form className="w3-container" method="post" onSubmit={onSubmit}>
-          
+
           <label>Name</label>
           <input
             className="w3-input"
@@ -102,9 +100,9 @@ export default function Signup() {
           />
           <br />
           <div className="row button">
-          <button style={{padding:"5px 30px 5px 30px",borderRadius:"8px"}} className="w3-btn w3-blue" type="submit">
-            Signup
-          </button>
+            <button style={{ padding: "5px 30px 5px 30px", borderRadius: "8px" }} className="w3-btn w3-blue" type="submit">
+              Signup
+            </button>
           </div>
           <br />
         </form>
