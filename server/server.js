@@ -4,7 +4,7 @@ const cors = require("cors");
 const server = express();
 server.use(express.json());
 server.use(cors({
-  origin: ["https://memo-app-tau.vercel.app"],
+  origin: ["https://post-it-ruby.vercel.app/"],
   methods: ["POST", "GET","DELETE"],
   credentials: true
 }
