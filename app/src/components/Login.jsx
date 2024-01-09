@@ -25,7 +25,7 @@ export default function Login() {
       if (data.message) { setLoad(true) } else setLoad(false)
     });
     // eslint-disable-next-line
-  }, [load])
+  }, [])
 
 
   //Login Process
