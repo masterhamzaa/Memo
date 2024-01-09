@@ -76,7 +76,7 @@ export default function Login() {
 
             <div className="containerr">
               <div className="wrapper">
-              {!load && <div style={{ marginTop: "30px" }} id="loader"></div>}
+              {!load && <div  id="loader"></div>}
                 {load && <>
                   <form method="post" onSubmit={onLogin}>
                   <div className="row">
