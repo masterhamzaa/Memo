@@ -54,9 +54,7 @@ export default function Login() {
   }
   return (
     <>
-      {!load && <div style={{ marginTop: "30px" }} id="loader"></div>}
-      {load && (
-        <>
+
           <div className="container">
             <div className="w3-container w3-pale-green w3-round h">
               <h4
@@ -79,8 +77,9 @@ export default function Login() {
 
             <div className="containerr">
               <div className="wrapper">
-
-                <form method="post" onSubmit={onLogin}>
+              {!load && <div style={{ marginTop: "30px" }} id="loader"></div>}
+                {load && <>
+                  <form method="post" onSubmit={onLogin}>
                   <div className="row">
                     <i className="fas fa-user"></i>
                     <input
@@ -117,12 +116,11 @@ export default function Login() {
                     </button>
                   </div>
                 </form>
+                </>}
               </div>
             </div>
           </div>
         </>
-      )}
-
-    </>
+   
   );
 }
