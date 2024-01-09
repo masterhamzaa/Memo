@@ -24,7 +24,6 @@ export default function Login() {
     Boot().then((data) => {
       if (data.message) { setLoad(true) } else setLoad(false)
     });
-    setLoad(true)
     // eslint-disable-next-line
   }, [load])
 
