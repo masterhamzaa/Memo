@@ -18,7 +18,7 @@ export default function Login() {
   useEffect(() => {
     setLoad(false)
     const Boot = async () => {
-      const req = await axios.get("https://master-api-62tp.onrender.com/");
+      const req = await axios.get("https://master-api-62tp.onrender.com/msg");
       return req.data;
     };
     Boot().then((data) => {
