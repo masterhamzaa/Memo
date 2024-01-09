@@ -16,7 +16,7 @@ express().use(middleware);
 const PostitModel = require("../Models/Postit");
 const UserModel = require("../Models/User");
 
-router.get("/",async (req,res)=>{
+router.get("/msg",async (req,res)=>{
    res.json({ message: "ok"});
 })
 
