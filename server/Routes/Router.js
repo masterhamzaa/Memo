@@ -17,7 +17,21 @@ const PostitModel = require("../Models/Postit");
 const UserModel = require("../Models/User");
 
 router.get("/msg",async (req,res)=>{
-   res.json({ message: "ok"});
+    require("dotenv").config()
+    const mongoose = require("mongoose")
+    mongoose.set("strictQuery", false)
+    await mongoose.connect(process.env.mdb, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    const cluster = mongoose.connection;
+    cluster.once("open", () => {
+        res.json({ message: "ok"});
+    })
+    cluster.on("error", (err) => {
+        console.log("error : " + err);
+    })
+
 })
 
 // routes
