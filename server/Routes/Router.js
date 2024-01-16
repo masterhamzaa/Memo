@@ -26,10 +26,10 @@ router.get("/msg",async (req,res)=>{
     })
     const cluster = mongoose.connection;
     const msg="";
-    cluster.once("open", () => {
+    cluster.once("open",async () => {
        msg="Success"
     })
-    cluster.on("error", (err) => {
+    cluster.on("error", async (err) => {
         console.log("error : " + err);
         msg="Error"
     })
