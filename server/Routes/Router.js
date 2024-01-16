@@ -25,12 +25,15 @@ router.get("/msg",async (req,res)=>{
         useUnifiedTopology: true,
     })
     const cluster = mongoose.connection;
+    const msg="";
     cluster.once("open", () => {
-        return res.json({ message: "ok"});
+       msg="Success"
     })
     cluster.on("error", (err) => {
         console.log("error : " + err);
+        msg="Error"
     })
+    res.json({ message: msg});
 
 })
 
