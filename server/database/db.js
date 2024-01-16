@@ -5,14 +5,18 @@ const mdb = async () => {
     await mongoose.connect(process.env.mdb, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-    })
-    const cluster = mongoose.connection;
-    cluster.once("open", () => {
+    }).then((result) => {
         console.log("Express Cluster ready for operations....");
-    })
-    cluster.on("error", (err) => {
+    }).catch((err) => {
         console.log("error : " + err);
-    })
+    });
+    //const cluster = mongoose.connection;
+    //cluster.once("open", () => {
+        
+    //})
+    //cluster.on("error", (err) => {
+       
+    //})
 }
 
 module.exports = { mdb }
