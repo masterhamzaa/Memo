@@ -11,8 +11,8 @@ server.use(cors({
 ));
 
 // mongo database
-//const { mdb } = require("./database/db");
-//mdb();
+const { mdb } = require("./database/db");
+mdb();
 
 // routes
 const routes = require("./Routes/Router");
