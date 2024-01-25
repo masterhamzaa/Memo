@@ -40,7 +40,8 @@ export default function Login() {
 
       if (!res.err) {
         //localStorage.setItem("token", res.token);
-        localStorage.setItem("user", data.userid);
+        localStorage.setItem("user", res.userid);
+        console.log(data.userid)
         go("/Postits")
       } else {
         Swal.fire({
