@@ -39,8 +39,8 @@ export default function Login() {
     transfert().then((res) => {
 
       if (!res.err) {
-        localStorage.setItem("token", res.token);
-        localStorage.setItem("userid", data.email);
+        //localStorage.setItem("token", res.token);
+        //localStorage.setItem("userid", data.email);
         go("/Postits")
       } else {
         Swal.fire({

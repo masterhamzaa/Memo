@@ -20,6 +20,13 @@ export default function Api() {
   }
 
   useEffect(() => {
+    effect
+    return () => {
+      cleanup
+    };
+  }, []);
+
+  useEffect(() => {
     setLoad(false)
     const getData = async () => {
       const req = await api.get(`postits/${localStorage.getItem("userid")}`,

@@ -15,6 +15,7 @@ express().use(middleware);
 // models
 const PostitModel = require("../Models/Postit");
 const UserModel = require("../Models/User");
+const AuthModel = require("../Models/Auth");
 
 router.get("/msg",async (req,res)=>{
    res.json({ message: "ok"});
@@ -48,8 +49,17 @@ router.post("/login", async (req, res) => {
       if (query) {
         if (bcrypt.compareSync(data.password, query.password)) {
           const token = jwt.sign({ user: data.email }, process.env.decodekey, {expiresIn: "3600s"});
-          res.json({ message: "successful login", token: token });
-          error = false;
+          const pass = new AuthModel({
+            id: query.email,
+            tunnel: token,
+          });
+          try {
+            const data = await pass.save();
+            res.status(200).json({message: "successful login", token: data.tunnel});
+            error = false;
+          } catch (err) {
+            res.status(400).json({ err: err.message });
+          }
         } else error = true;
       }
     } else error = true;
