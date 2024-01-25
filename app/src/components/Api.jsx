@@ -31,10 +31,7 @@ export default function Api() {
         if (data.err) {
           go("/");
           notify("Not Authorized !", "Oops...", "error")
-        } else { 
-          console.log(data.token)
-          setPass(data.token); 
-        }
+        } else { setPass(data.token); }
       });
     } catch (error) {
       console.log("error of pass " + error)  
@@ -45,10 +42,16 @@ export default function Api() {
   useEffect(() => {
     setLoad(false)
     console.log(pass)
-    
+    const getData = async () => {
+      const req = await api.get(`postits/${localStorage.getItem("user")}`,
+        { headers: { Authorization: pass } }
+      );
+      return req.data;
+    };
     getData().then((data) => {
       if (data.err) {
         go("/");
+        console.log(pass)
         notify("Authentification error !", "Oops...", "error")
       } else { setData(data.data); setUser(data.username); }
     });
