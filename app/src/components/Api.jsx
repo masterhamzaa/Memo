@@ -41,6 +41,7 @@ export default function Api() {
 
   useEffect(() => {
     setLoad(false)
+    console.log(pass)
     const getData = async () => {
       const req = await api.get(`postits/${localStorage.getItem("user")}`,
         { headers: { Authorization: pass } }
