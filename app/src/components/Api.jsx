@@ -27,8 +27,9 @@ export default function Api() {
         const req = await api.get(`pass/${localStorage.getItem("user")}`);
         return req.data;
       };
-      getPass().then((data) => {
-        if (data.err) {
+      getPass().then((res) => {
+        if (res.err) {
+          console.log(res.token)
           go("/");
           notify("Not Authorized !", "Oops...", "error")
         } else { console.log(pass);setPass(data.token); }
