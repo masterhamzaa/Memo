@@ -38,7 +38,7 @@ export default function Api() {
       console.log("error of pass " + error)  
     }
     setLoad(true)
-  }, []);
+  }, [load]);
 
   useEffect(() => {
     setLoad(false)
