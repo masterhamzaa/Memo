@@ -9,6 +9,7 @@ export default function Api() {
   const [load, setLoad] = useState(false)
   const [data, setData] = useState([])
   const [user, setUser] = useState("")
+  const [pass, setPass] = useState("")
   const api = axios.create({ baseURL: 'https://master-api-62tp.onrender.com/', })
   const go = useNavigate()
   const notify = (msg, titre, type) => {
@@ -20,17 +21,29 @@ export default function Api() {
   }
 
   useEffect(() => {
-    effect
-    return () => {
-      cleanup
-    };
+    setLoad(false)
+    try {
+      const getPass = async () => {
+        const req = await api.get(`pass/${localStorage.getItem("user")}`);
+        return req.data;
+      };
+      getPass().then((data) => {
+        if (data.err) {
+          go("/");
+          notify("Not Authorized !", "Oops...", "error")
+        } else { setPass(data.token); }
+      });
+    } catch (error) {
+      console.log("error of pass " + error)  
+    }
+    setLoad(true)
   }, []);
 
   useEffect(() => {
     setLoad(false)
     const getData = async () => {
-      const req = await api.get(`postits/${localStorage.getItem("userid")}`,
-        { headers: { Authorization: localStorage.getItem("token") } }
+      const req = await api.get(`postits/${localStorage.getItem("user")}`,
+        { headers: { Authorization: pass } }
       );
       return req.data;
     };
@@ -45,14 +58,14 @@ export default function Api() {
   }, [load])
 
   const Add = async (value) => {
-    await api.post("postit/add", { postit: value, userId: localStorage.getItem("userid") },
-      { headers: { Authorization: localStorage.getItem("token") } }
+    await api.post("postit/add", { postit: value, userId: localStorage.getItem("user") },
+      { headers: { Authorization: pass } }
     );
     setLoad(false);
   }
   const Delete = async () => {
-    await api.delete(`allpostits/${localStorage.getItem("userid")}`,
-      { headers: { Authorization: localStorage.getItem("token") } }
+    await api.delete(`allpostits/${localStorage.getItem("user")}`,
+      { headers: { Authorization: pass } }
     )
     setLoad(false)
   }
@@ -70,7 +83,7 @@ export default function Api() {
 
   return (
     <>
-      <Header username={user} />
+      <Header username={user} user={localStorage.getItem("user")} />
       <div
         style={{
           textAlign: "center",
