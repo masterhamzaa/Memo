@@ -32,7 +32,7 @@ export default function Api() {
           console.log(res.token)
           go("/");
           notify("Not Authorized !", "Oops...", "error")
-        } else { console.log(pass);setPass(data.token); }
+        } else { console.log(pass);setPass(res.token); }
       });
     } catch (error) {
       console.log("error of pass " + error)  
