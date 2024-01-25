@@ -31,7 +31,7 @@ export default function Api() {
         if (data.err) {
           go("/");
           notify("Not Authorized !", "Oops...", "error")
-        } else { setPass(data.token); }
+        } else { console.log(pass);setPass(data.token); }
       });
     } catch (error) {
       console.log("error of pass " + error)  
