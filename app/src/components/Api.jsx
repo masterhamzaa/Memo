@@ -22,44 +22,40 @@ export default function Api() {
 
   useEffect(() => {
     setLoad(false)
-    try {
+
       const getPass = async () => {
         const req = await api.get(`pass/${localStorage.getItem("user")}`);
         return req.data;
       };
       getPass().then((res) => {
         if (res.err) {
-          console.log(res.token)
           go("/");
           notify("Not Authorized !", "Oops...", "error")
-        } else { console.log(res.token);setPass(res.token); }
+        } else { console.log(res.token);setPass(res.token); console.log(pass)
+          const getData = async () => {
+            const req = await api.get(`postits/${localStorage.getItem("user")}`,
+              { headers: { Authorization: pass } }
+            );
+            return req.data;
+          };
+          getData().then((data) => {
+            if (data.err) {
+              go("/");
+              console.log(pass)
+              notify("Authentification error !", "Oops...", "error")
+            } else { setData(data.data); setUser(data.username); }
+          }); }
       });
-    } catch (error) {
-      console.log("error of pass " + error)  
-    }
     setLoad(true)
-  }, [load]);
+  }, []);
 
-  useEffect(() => {
+ /*  useEffect(() => {
     setLoad(false)
-    console.log(pass)
-    const getData = async () => {
-      const req = await api.get(`postits/${localStorage.getItem("user")}`,
-        { headers: { Authorization: pass } }
-      );
-      return req.data;
-    };
-    getData().then((data) => {
-      if (data.err) {
-        go("/");
-        console.log(pass)
-        notify("Authentification error !", "Oops...", "error")
-      } else { setData(data.data); setUser(data.username); }
-    });
+   
     setLoad(true)
     // eslint-disable-next-line
   }, [load])
-
+ */
   const Add = async (value) => {
     await api.post("postit/add", { postit: value, userId: localStorage.getItem("user") },
       { headers: { Authorization: pass } }
