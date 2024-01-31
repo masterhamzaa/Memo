@@ -14,7 +14,6 @@ export default function Login() {
   //Navigation
   const go = useNavigate();
 
-
   useEffect(() => {
     setLoad(false)
     const Boot = async () => {
@@ -35,9 +34,7 @@ export default function Login() {
       const req = await axios.post("http://localhost:1337/login", data);
       return req.data;
     };
-
     transfert().then((res) => {
-
       if (!res.err) {
         localStorage.setItem("token", res.token);
         localStorage.setItem("userid", data.email);
