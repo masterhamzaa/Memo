@@ -49,17 +49,8 @@ router.post("/login", async (req, res) => {
       if (query) {
         if (bcrypt.compareSync(data.password, query.password)) {
           const token = jwt.sign({ user: data.email }, process.env.decodekey, {expiresIn: "3600s"});
-          const pass = new AuthModel({
-            id: query.email,
-            tunnel: token,
-          });
-          try {
-            const data = await pass.save();
-            res.status(200).json({message: "successful login", user: data.id});
-            error = false;
-          } catch (err) {
-            res.status(400).json({ err: err.message });
-          }
+          res.json({ message: "successful login", token: token });
+          error = false;
         } else error = true;
       }
     } else error = true;
@@ -105,22 +96,7 @@ router.delete("/allpostits/:userid", middleware, async (req, res) => {
 });
 
 //getpassport
-router.get("/pass/:user",async (req,res) => {
-  try {
-    let user = await AuthModel.findOne({id:req.params.user});
-    res.status(200).json({ token : user.tunnel });
-  } catch (err) {
-    res.json({ err: err.message });
-  }
-})
 
 //logout
-router.delete("/logout/pass/:user",middleware,async (req,res) => {
-  try {
-    const job = await AuthModel.deleteMany({ id: req.params.user });
-    res.status(200).json({message :"bye"});
-  } catch (error) {
-    res.status(400).json({ err: error.message });
-  }
-})
+
 module.exports = router;

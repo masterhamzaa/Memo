@@ -9,7 +9,6 @@ export default function Api() {
   const [load, setLoad] = useState(false)
   const [data, setData] = useState([])
   const [user, setUser] = useState("")
-  const [pass, setPass] = useState("")
   const api = axios.create({ baseURL: 'https://master-api-62tp.onrender.com/', })
   const go = useNavigate()
   const notify = (msg, titre, type) => {
@@ -22,40 +21,22 @@ export default function Api() {
 
   useEffect(() => {
     setLoad(false)
-
-      const getPass = async () => {
-        const req = await api.get(`pass/${localStorage.getItem("user")}`);
-        return req.data;
-      };
-      getPass().then((res) => {
-        if (res.err) {
-          go("/");
-          notify("Not Authorized !", "Oops...", "error")
-        } else { console.log(res.token);setPass(res.token); console.log(pass)
-          const getData = async () => {
-            const req = await api.get(`postits/${localStorage.getItem("user")}`,
-              { headers: { Authorization: pass } }
-            );
-            return req.data;
-          };
-          getData().then((data) => {
-            if (data.err) {
-              go("/");
-              console.log(pass)
-              notify("Authentification error !", "Oops...", "error")
-            } else { setData(data.data); setUser(data.username); }
-          }); }
-      });
-    setLoad(true)
-  }, []);
-
- /*  useEffect(() => {
-    setLoad(false)
-   
+    const getData = async () => {
+      const req = await api.get(`postits/${localStorage.getItem("userid")}`,
+        { headers: { Authorization: localStorage.getItem("token") } }
+      );
+      return req.data;
+    };
+    getData().then((data) => {
+      if (data.err) {
+        go("/");
+        notify("Authentification error !", "Oops...", "error")
+      } else { setData(data.data); setUser(data.username); }
+    });
     setLoad(true)
     // eslint-disable-next-line
   }, [load])
- */
+
   const Add = async (value) => {
     await api.post("postit/add", { postit: value, userId: localStorage.getItem("user") },
       { headers: { Authorization: pass } }
