@@ -39,13 +39,13 @@ export default function Api() {
 
   const Add = async (value) => {
     await api.post("postit/add", { postit: value, userId: localStorage.getItem("userid") },
-      { headers: { Authorization: pass } }
+      { headers: { Authorization:localStorage.getItem("token") } }
     );
     setLoad(false);
   }
   const Delete = async () => {
     await api.delete(`allpostits/${localStorage.getItem("userid")}`,
-      { headers: { Authorization: pass } }
+      { headers: { Authorization:localStorage.getItem("token") } }
     )
     setLoad(false)
   }
@@ -63,7 +63,7 @@ export default function Api() {
 
   return (
     <>
-      <Header username={user} user={localStorage.getItem("userid")} />
+      <Header username={user} />
       <div
         style={{
           textAlign: "center",
@@ -125,7 +125,6 @@ export default function Api() {
 
         <div className="w3-row">
           {!load && <div style={{ marginTop: "30px" }} id="loader"></div>}
-
           {load && (
             <>
               {data.map((postit) => {
