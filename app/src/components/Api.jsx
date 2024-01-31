@@ -38,13 +38,13 @@ export default function Api() {
   }, [load])
 
   const Add = async (value) => {
-    await api.post("postit/add", { postit: value, userId: localStorage.getItem("user") },
+    await api.post("postit/add", { postit: value, userId: localStorage.getItem("userid") },
       { headers: { Authorization: pass } }
     );
     setLoad(false);
   }
   const Delete = async () => {
-    await api.delete(`allpostits/${localStorage.getItem("user")}`,
+    await api.delete(`allpostits/${localStorage.getItem("userid")}`,
       { headers: { Authorization: pass } }
     )
     setLoad(false)
@@ -63,7 +63,7 @@ export default function Api() {
 
   return (
     <>
-      <Header username={user} user={localStorage.getItem("user")} />
+      <Header username={user} user={localStorage.getItem("userid")} />
       <div
         style={{
           textAlign: "center",

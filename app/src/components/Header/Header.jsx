@@ -1,25 +1,7 @@
 import React from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const Header = (props) => {
   const go = useNavigate();
-  const logout = async () => {
-
-    const bye = async () => {
-      const req = await axios.delete(`https://master-api-62tp.onrender.com/logout/pass/${props.user}`);
-      return req.data;
-    };
-
-    bye().then((res) => {
-      if (!res.err) {
-        console.log(res.message)
-        localStorage.removeItem("user");
-        go("/")
-      } else {
-        alert(res.err)
-      }})
-    
-  }
   return (
     <div className="container hidr">
       <div className="w3-container w3-pale-green w3-round h">
@@ -34,7 +16,7 @@ const Header = (props) => {
             className="w3-button w3-round w3-white w3-padding-3"
             style={{ marginBottom: 12,transition:"1ms" }}
             onClick={() => {
-              localStorage.removeItem("user");
+              localStorage.removeItem("userid");
               localStorage.removeItem("token");
               go("/");
             }}
