@@ -107,7 +107,7 @@ export default function Login() {
                   </div>
 
                   <div className="row button">
-                    <button style={{ padding: "5px 30px 5px 30px", borderRadius: "8px" }} className="w3-btn w3-blue" formMethod="post" type="submit">
+                    <button style={{ padding: "5px 30px 5px 30px", borderRadius: "8px" }} className="w3-btn w3-blue"  type="submit">
                       Login
                     </button>
                   </div>
